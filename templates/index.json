@@ -2,6 +2,7 @@
   "sections": {
     "hero": {
       "type": "hero",
+      "blocks": {},
       "settings": {
         "title": "Live Long, Live Strong",
         "subtitle": "Premium superfood nutrition designed by doctors to optimize your health and vitality. Experience the power of nature's most potent ingredients.",
@@ -15,6 +16,7 @@
     },
     "offer_strip": {
       "type": "offer-strip",
+      "blocks": {},
       "settings": {
         "text": "🌱 Free shipping on orders over $75 | 30-day money-back guarantee",
         "background_color": "#4ade80",
@@ -26,40 +28,7 @@
     },
     "trust_signals": {
       "type": "trust-signals",
-      "blocks": [
-        {
-          "type": "trust_item",
-          "settings": {
-            "icon": "shield",
-            "title": "Doctor Formulated",
-            "description": "Created by medical professionals with decades of experience"
-          }
-        },
-        {
-          "type": "trust_item",
-          "settings": {
-            "icon": "leaf",
-            "title": "Premium Ingredients",
-            "description": "Only the highest quality, science-backed superfoods"
-          }
-        },
-        {
-          "type": "trust_item",
-          "settings": {
-            "icon": "check",
-            "title": "Third-Party Tested",
-            "description": "Rigorous testing for purity, potency, and safety"
-          }
-        },
-        {
-          "type": "trust_item",
-          "settings": {
-            "icon": "heart",
-            "title": "Made in USA",
-            "description": "Manufactured in FDA-registered facilities"
-          }
-        }
-      ],
+      "blocks": {},
       "settings": {
         "title": "Why Choose RawLifeMD?",
         "subtitle": "We're committed to delivering the highest quality nutrition supplements backed by science and trusted by healthcare professionals."
@@ -67,56 +36,7 @@
     },
     "benefits": {
       "type": "benefits-grid",
-      "blocks": [
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "energy",
-            "title": "Natural Energy",
-            "description": "Sustained energy without crashes from our blend of superfoods and adaptogens"
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "immunity",
-            "title": "Immune Support",
-            "description": "Powerful antioxidants and nutrients to strengthen your body's natural defenses"
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "digestion",
-            "title": "Digestive Health",
-            "description": "Prebiotic fibers and digestive enzymes for optimal gut health and nutrient absorption"
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "brain",
-            "title": "Mental Clarity",
-            "description": "Nootropic ingredients to support focus, memory, and cognitive performance"
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "detox",
-            "title": "Natural Detox",
-            "description": "Chlorophyll-rich greens and antioxidants to support your body's detoxification"
-          }
-        },
-        {
-          "type": "benefit",
-          "settings": {
-            "icon": "recovery",
-            "title": "Recovery Support",
-            "description": "Anti-inflammatory compounds to support faster recovery and reduced oxidative stress"
-          }
-        }
-      ],
+      "blocks": {},
       "settings": {
         "title": "Complete Wellness in Every Scoop",
         "subtitle": "Our comprehensive formula addresses multiple aspects of health to help you feel your best every day."
@@ -124,6 +44,7 @@
     },
     "ingredients_preview": {
       "type": "ingredients-preview",
+      "blocks": {},
       "settings": {
         "title": "75+ Premium Ingredients",
         "subtitle": "From organic greens to powerful adaptogens, every ingredient is carefully selected for maximum potency and bioavailability.",
@@ -134,32 +55,7 @@
     },
     "how_it_works": {
       "type": "how-it-works",
-      "blocks": [
-        {
-          "type": "step",
-          "settings": {
-            "step_number": "1",
-            "title": "Mix",
-            "description": "Add one scoop to 8-12 oz of cold water or your favorite beverage"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "step_number": "2",
-            "title": "Drink",
-            "description": "Enjoy the refreshing taste while your body absorbs premium nutrition"
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "step_number": "3",
-            "title": "Thrive",
-            "description": "Experience sustained energy, mental clarity, and overall wellness"
-          }
-        }
-      ],
+      "blocks": {},
       "settings": {
         "title": "Simple Daily Nutrition",
         "subtitle": "Just one scoop a day provides comprehensive nutrition to support your health goals."
@@ -167,35 +63,7 @@
     },
     "social_proof": {
       "type": "testimonials",
-      "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "I've tried many greens powders, but RawLifeMD is in a league of its own. The energy boost is incredible and it actually tastes great!",
-            "author": "Sarah M.",
-            "title": "Verified Customer",
-            "rating": 5
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "As a busy professional, RawLifeMD helps me maintain my energy and focus throughout the day. It's become an essential part of my morning routine.",
-            "author": "Michael R.",
-            "title": "Verified Customer",
-            "rating": 5
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The quality of ingredients is outstanding. I love that it's doctor-formulated and I can feel the difference in my overall wellness.",
-            "author": "Jennifer L.",
-            "title": "Verified Customer",
-            "rating": 5
-          }
-        }
-      ],
+      "blocks": {},
       "settings": {
         "title": "Trusted by Thousands",
         "subtitle": "Join the growing community of people who have transformed their health with RawLifeMD."
@@ -203,6 +71,7 @@
     },
     "final_cta": {
       "type": "final-cta",
+      "blocks": {},
       "settings": {
         "title": "Start Your Wellness Journey Today",
         "subtitle": "Experience the difference that premium, doctor-formulated nutrition can make in your life.",
