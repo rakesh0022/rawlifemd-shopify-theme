@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "bundle_builder": {
+      "type": "bundle-builder",
+      "settings": {
+        "title": "Build Your Perfect Bundle",
+        "description": "Customize your wellness routine with our premium products. Save more when you bundle!"
+      }
+    }
+  },
+  "order": [
+    "bundle_builder"
+  ]
+}

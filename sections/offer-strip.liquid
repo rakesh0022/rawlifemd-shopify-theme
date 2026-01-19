@@ -1,0 +1,118 @@
+{{ 'section-offer-strip.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.text != blank -%}
+  <div class="offer-strip" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+    <div class="offer-strip__content page-width">
+      {%- if section.settings.enable_link and section.settings.link_url != blank -%}
+        <a href="{{ section.settings.link_url }}" class="offer-strip__link">
+          <span class="offer-strip__text">{{ section.settings.text }}</span>
+          {%- if section.settings.link_text != blank -%}
+            <span class="offer-strip__cta">{{ section.settings.link_text }}</span>
+          {%- endif -%}
+        </a>
+      {%- else -%}
+        <div class="offer-strip__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+.offer-strip {
+  padding: var(--spacing-sm) 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.875rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-strip__content {
+  position: relative;
+  z-index: 1;
+}
+
+.offer-strip__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.offer-strip__link:hover {
+  opacity: 0.8;
+}
+
+.offer-strip__text {
+  line-height: 1.4;
+}
+
+.offer-strip__cta {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .offer-strip {
+    font-size: 0.8125rem;
+    padding: var(--spacing-xs) 0;
+  }
+  
+  .offer-strip__link {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Offer Strip",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "🌱 Free shipping on orders over $75 | 30-day money-back guarantee"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#4ade80"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link",
+      "label": "Enable link",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Offer Strip"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,569 @@
+{{ 'section-bundle-builder.css' | asset_url | stylesheet_tag }}
+
+<div class="bundle-builder section">
+  <div class="page-width">
+    <!-- Bundle Header -->
+    <div class="bundle-header">
+      <div class="section__header">
+        <h1 class="section__title">{{ section.settings.title | default: 'Build Your Perfect Bundle' }}</h1>
+        <p class="section__subtitle">
+          {{ section.settings.description | default: 'Customize your wellness routine with our premium products. Save more when you bundle!' }}
+        </p>
+      </div>
+    </div>
+
+    <div class="bundle-content">
+      <!-- Step Indicator -->
+      <div class="bundle-steps">
+        <div class="step step--active" data-step="1">
+          <div class="step__number">1</div>
+          <div class="step__label">Choose Products</div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step__number">2</div>
+          <div class="step__label">Select Quantities</div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step__number">3</div>
+          <div class="step__label">Review & Save</div>
+        </div>
+      </div>
+
+      <div class="bundle-main">
+        <!-- Product Selection -->
+        <div class="bundle-products">
+          <h2 class="bundle-section-title">Select Your Products</h2>
+          
+          <div class="product-grid">
+            {%- for product in collections['bundle-products'].products limit: 6 -%}
+              <div class="bundle-product-card" data-product-id="{{ product.id }}" data-price="{{ product.price }}">
+                <div class="product-card__image">
+                  {%- if product.featured_media -%}
+                    {{ product.featured_media | image_url: width: 300 | image_tag:
+                      loading: 'lazy',
+                      class: 'product-image',
+                      alt: product.featured_media.alt | escape
+                    }}
+                  {%- else -%}
+                    <div class="product-image-placeholder">
+                      <svg class="icon icon-product" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                  {%- endif -%}
+                  
+                  <div class="product-card__checkbox">
+                    <input type="checkbox" id="product-{{ product.id }}" data-product-id="{{ product.id }}">
+                    <label for="product-{{ product.id }}" class="checkbox-label">
+                      <span class="visually-hidden">Select {{ product.title }}</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="product-card__content">
+                  <h3 class="product-card__title">{{ product.title }}</h3>
+                  <div class="product-card__price">
+                    {%- if product.compare_at_price > product.price -%}
+                      <span class="price price--on-sale">
+                        <span class="price-item price-item--sale">{{ product.price | money }}</span>
+                        <span class="price-item price-item--regular">{{ product.compare_at_price | money }}</span>
+                      </span>
+                    {%- else -%}
+                      <span class="price">{{ product.price | money }}</span>
+                    {%- endif -%}
+                  </div>
+                  
+                  {%- if product.description != blank -%}
+                    <div class="product-card__description">
+                      {{ product.description | truncate: 100 }}
+                    </div>
+                  {%- endif -%}
+                  
+                  <div class="product-card__quantity" style="display: none;">
+                    <label for="quantity-{{ product.id }}" class="quantity-label">Quantity:</label>
+                    <div class="quantity-input-wrapper">
+                      <button type="button" class="quantity-btn quantity-btn--minus" data-product-id="{{ product.id }}">-</button>
+                      <input type="number" id="quantity-{{ product.id }}" class="quantity-input" value="1" min="1" max="10" data-product-id="{{ product.id }}">
+                      <button type="button" class="quantity-btn quantity-btn--plus" data-product-id="{{ product.id }}">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- else -%}
+              <div class="bundle-empty">
+                <p>No products available for bundling. Please add products to the "bundle-products" collection.</p>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Bundle Summary -->
+        <div class="bundle-summary">
+          <div class="summary-card">
+            <h3 class="summary-title">Your Bundle</h3>
+            
+            <div class="summary-items">
+              <div class="summary-row">
+                <span>Items Selected:</span>
+                <span class="total-items">0</span>
+              </div>
+              
+              <div class="summary-row">
+                <span>Subtotal:</span>
+                <span class="subtotal">$0.00</span>
+              </div>
+              
+              <div class="summary-row savings-container" style="display: none;">
+                <span>Bundle Savings:</span>
+                <span class="savings text-success">-$0.00</span>
+              </div>
+              
+              <div class="summary-row summary-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+              </div>
+            </div>
+            
+            <div class="summary-benefits">
+              <div class="benefit-item">
+                <svg class="icon icon-check" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Free shipping on orders $75+</span>
+              </div>
+              
+              <div class="benefit-item">
+                <svg class="icon icon-check" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>30-day money-back guarantee</span>
+              </div>
+              
+              <div class="benefit-item">
+                <svg class="icon icon-check" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Subscribe & save 20%</span>
+              </div>
+            </div>
+            
+            <div class="summary-actions">
+              <button type="button" class="btn btn--accent btn--large add-bundle-to-cart" disabled>
+                Add Bundle to Cart
+              </button>
+              
+              <button type="button" class="btn btn--outline subscribe-bundle" disabled>
+                Subscribe & Save 20%
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.bundle-builder {
+  padding: var(--spacing-2xl) 0;
+  background: var(--color-background);
+}
+
+.bundle-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.bundle-steps {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-2xl);
+  gap: var(--spacing-xl);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  opacity: 0.5;
+  transition: var(--transition);
+}
+
+.step--active {
+  opacity: 1;
+}
+
+.step__number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.step--active .step__number {
+  background: var(--color-accent);
+  color: white;
+}
+
+.step__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.step--active .step__label {
+  color: var(--color-text);
+}
+
+.bundle-main {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
+.bundle-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.bundle-product-card {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.bundle-product-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.bundle-product-card.selected {
+  border-color: var(--color-accent);
+  background: #f0f9ff;
+}
+
+.product-card__image {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+}
+
+.product-image-placeholder .icon {
+  width: 48px;
+  height: 48px;
+}
+
+.product-card__checkbox {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+}
+
+.product-card__checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+
+.product-card__checkbox input[type="checkbox"]:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.checkbox-label {
+  cursor: pointer;
+}
+
+.product-card__content {
+  padding: var(--spacing-lg);
+}
+
+.product-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.product-card__price {
+  margin-bottom: var(--spacing-sm);
+}
+
+.price {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.price--on-sale .price-item--sale {
+  color: var(--color-accent);
+}
+
+.price--on-sale .price-item--regular {
+  text-decoration: line-through;
+  color: var(--color-text-light);
+  margin-left: var(--spacing-xs);
+}
+
+.product-card__description {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+}
+
+.product-card__quantity {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.quantity-label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+}
+
+.quantity-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  width: fit-content;
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--color-border);
+  color: var(--color-text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.quantity-btn:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+.quantity-input {
+  width: 60px;
+  height: 36px;
+  border: none;
+  text-align: center;
+  font-weight: 500;
+}
+
+.quantity-input:focus {
+  outline: none;
+}
+
+.bundle-summary {
+  position: sticky;
+  top: 100px;
+}
+
+.summary-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.summary-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.summary-items {
+  margin-bottom: var(--spacing-lg);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-total {
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--color-border);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.summary-benefits {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: #f0f9ff;
+  border-radius: var(--border-radius);
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.benefit-item:last-child {
+  margin-bottom: 0;
+}
+
+.benefit-item .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-success);
+}
+
+.summary-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.bundle-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-light);
+}
+
+@media (max-width: 990px) {
+  .bundle-main {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  
+  .bundle-summary {
+    position: static;
+    order: -1;
+  }
+  
+  .bundle-steps {
+    gap: var(--spacing-lg);
+  }
+  
+  .step {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+  }
+  
+  .step__number {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bundle-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  
+  .step {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof BundleBuilder !== 'undefined') {
+    BundleBuilder.init();
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Bundle Builder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Build Your Perfect Bundle"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Customize your wellness routine with our premium products. Save more when you bundle!"
+    },
+    {
+      "type": "collection",
+      "id": "bundle_collection",
+      "label": "Bundle Products Collection",
+      "info": "Select the collection containing products available for bundling"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Builder"
+    }
+  ]
+}
+{% endschema %}

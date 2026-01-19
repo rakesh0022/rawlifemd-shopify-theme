@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "ingredients_main": {
+      "type": "ingredients-main",
+      "settings": {
+        "title": "Our Premium Ingredients",
+        "description": "Discover the science-backed ingredients that make our formulations so effective. Each ingredient is carefully selected for its purity, potency, and proven benefits.",
+        "cta_text": "Shop Now",
+        "cta_url": "/products/rawlifemd-greens",
+        "secondary_cta_text": "Learn More",
+        "secondary_cta_url": "/pages/about"
+      }
+    }
+  },
+  "order": [
+    "ingredients_main"
+  ]
+}
