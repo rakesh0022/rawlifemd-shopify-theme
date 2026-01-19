@@ -814,30 +814,23 @@
 
 {% schema %}
 {
-  "name": "t:sections.header.name",
+  "name": "Header",
   "class": "section-header",
   "settings": [
     {
       "type": "select",
       "id": "logo_position",
       "options": [
-        {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        }
+        { "value": "top-left", "label": "Top left" },
+        { "value": "top-center", "label": "Top center" }
       ],
       "default": "top-left",
-      "label": "t:sections.header.settings.logo_position.label",
-      "info": "t:sections.header.settings.logo_position.info"
+      "label": "Logo position (desktop)"
     },
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "t:sections.header.settings.logo.label"
+      "label": "Logo"
     },
     {
       "type": "range",
@@ -846,182 +839,105 @@
       "max": 250,
       "step": 10,
       "default": 100,
-      "label": "t:sections.header.settings.logo_width.label"
+      "label": "Logo width"
     },
     {
       "type": "select",
-      "id": "logo_position",
+      "id": "desktop_logo_alignment",
       "options": [
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        }
+        { "value": "middle-left", "label": "Middle left" },
+        { "value": "top-left", "label": "Top left" },
+        { "value": "top-center", "label": "Top center" }
       ],
       "default": "middle-left",
-      "label": "t:sections.header.settings.logo_position.label"
+      "label": "Desktop logo alignment"
     },
     {
       "type": "link_list",
       "id": "menu",
       "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
+      "label": "Main menu"
     },
     {
       "type": "select",
       "id": "menu_type_desktop",
       "options": [
-        {
-          "value": "dropdown",
-          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
-        },
-        {
-          "value": "mega",
-          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        }
+        { "value": "dropdown", "label": "Dropdown" },
+        { "value": "mega", "label": "Mega menu" },
+        { "value": "drawer", "label": "Drawer" }
       ],
       "default": "dropdown",
-      "label": "t:sections.header.settings.menu_type_desktop.label",
-      "info": "t:sections.header.settings.menu_type_desktop.info"
+      "label": "Desktop menu type"
     },
     {
       "type": "select",
       "id": "sticky_header_type",
       "options": [
-        {
-          "value": "none",
-          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-        },
-        {
-          "value": "on-scroll-up",
-          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-        },
-        {
-          "value": "always",
-          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-        },
-        {
-          "value": "reduce-logo-size",
-          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-        }
+        { "value": "none", "label": "None" },
+        { "value": "on-scroll-up", "label": "On scroll up" },
+        { "value": "always", "label": "Always" },
+        { "value": "reduce-logo-size", "label": "Reduce logo size" }
       ],
       "default": "on-scroll-up",
-      "label": "t:sections.header.settings.sticky_header_type.label"
+      "label": "Sticky header behavior"
     },
     {
       "type": "checkbox",
       "id": "show_line_separator",
       "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
+      "label": "Show bottom border"
     },
     {
       "type": "select",
       "id": "color_scheme",
       "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
-        }
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
       ],
       "default": "background-1",
-      "label": "t:sections.all.colors.label"
+      "label": "Color scheme"
     },
     {
       "type": "checkbox",
       "id": "enable_country_selector",
       "default": true,
-      "label": "t:sections.header.settings.enable_country_selector.label"
+      "label": "Enable country selector"
     },
     {
       "type": "checkbox",
       "id": "enable_language_selector",
       "default": true,
-      "label": "t:sections.header.settings.enable_language_selector.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.mobile_layout.content"
+      "label": "Enable language selector"
     },
     {
       "type": "select",
       "id": "mobile_logo_position",
       "options": [
-        {
-          "value": "center",
-          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-        },
-        {
-          "value": "left",
-          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-        }
+        { "value": "center", "label": "Center" },
+        { "value": "left", "label": "Left" }
       ],
       "default": "center",
-      "label": "t:sections.header.settings.mobile_logo_position.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.menu.content"
+      "label": "Mobile logo position"
     },
     {
       "type": "select",
       "id": "menu_color_scheme",
       "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
-        }
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "inverse", "label": "Inverse" }
       ],
       "default": "background-1",
-      "label": "t:sections.all.colors.label"
+      "label": "Menu color scheme"
     }
   ],
   "blocks": [
-    {
-      "type": "@app"
-    }
+    { "type": "@app" }
   ]
 }
 {% endschema %}
