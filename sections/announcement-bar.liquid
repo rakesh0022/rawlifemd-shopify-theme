@@ -1,0 +1,19 @@
+{% if section.settings.text != blank %}
+  <div style="background:#4ade80;color:#fff;text-align:center;padding:8px;">
+    {{ section.settings.text }}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $75"
+    }
+  ]
+}
+{% endschema %}
